@@ -329,6 +329,17 @@
             transform: scale(1.1);
         }
 
+        .calendar-day.today {
+            background: rgba(229, 6, 149, 0.2);
+            border: 2px solid #E50695;
+            color: #E50695;
+            font-weight: bold;
+        }
+
+        .calendar-day.today:hover {
+            background: rgba(229, 6, 149, 0.4);
+        }
+
         .calendar-day.other-month {
             color: #666;
         }
@@ -377,6 +388,27 @@
             margin-bottom: 8px;
             color: white;
             font-size: 1.1em;
+        }
+
+        .form-label.required {
+            font-weight: bold;
+        }
+
+        .form-label.required::after {
+            content: " *";
+            color: #E50695;
+            font-weight: bold;
+        }
+
+        .form-label.optional {
+            opacity: 0.9;
+        }
+
+        .form-label.optional::after {
+            content: " (opcional)";
+            color: #999;
+            font-size: 0.9em;
+            font-style: italic;
         }
 
         .form-input {
@@ -777,11 +809,11 @@
                         <div class="time-inputs">
                             <div class="form-group">
                                 <label class="form-label">🕐 Hora de inicio</label>
-                                <input type="time" class="form-input" id="horaInicio" value="14:00">
+                                <input type="time" class="form-input" id="horaInicio" value="15:00">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">🕕 Hora de finalización (estimada)</label>
-                                <input type="time" class="form-input" id="horaFin" value="18:00">
+                                <input type="time" class="form-input" id="horaFin" value="17:00">
                             </div>
                         </div>
                     </div>
@@ -793,17 +825,17 @@
                 <div class="form-section">
                     <div class="form-row">
                         <div class="form-group">
-                            <label class="form-label">🎭 Temática de la fiesta</label>
+                            <label class="form-label optional">🎭 Temática de la fiesta</label>
                             <input type="text" class="form-input" id="tematica" placeholder="Ej: Princesas, Superhéroes, Unicornios..." onchange="updateSummary()">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">🎈 Nombre del festejado</label>
+                            <label class="form-label optional">🎈 Nombre del festejado</label>
                             <input type="text" class="form-input" id="festejado" placeholder="Nombre del cumpleañero/a" onchange="updateSummary()">
                         </div>
                     </div>
                     
                     <div class="form-group full-width">
-                        <label class="form-label">📝 Observaciones especiales</label>
+                        <label class="form-label optional">📝 Observaciones especiales</label>
                         <textarea class="form-input form-textarea" id="observaciones" 
                                   placeholder="Si tienes algún detalle especial háznolo saber"
                                   onchange="updateSummary()"></textarea>
@@ -813,21 +845,26 @@
 
             <div class="section">
                 <h2 class="section-title">👤 Información Personal</h2>
+                <div style="background: rgba(229, 6, 149, 0.1); border: 1px solid #E50695; border-radius: 8px; padding: 12px; margin-bottom: 20px; text-align: center;">
+                    <p style="color: #E50695; font-size: 0.9em; margin: 0;">
+                        ℹ️ Los campos marcados con <span style="color: #E50695; font-weight: bold;">*</span> son obligatorios
+                    </p>
+                </div>
                 <div class="form-section">
                     <div class="form-row">
                         <div class="form-group">
-                            <label class="form-label">👤 Nombre completo</label>
+                            <label class="form-label required">👤 Nombre completo</label>
                             <input type="text" class="form-input" id="nombreCompleto" placeholder="Tu nombre completo" onchange="updateSummary()">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">☎️ Teléfono</label>
+                            <label class="form-label required">☎️ Teléfono</label>
                             <input type="tel" class="form-input" id="telefono" placeholder="Ej: 3001234567" onchange="updateSummary()">
                         </div>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group full-width">
-                            <label class="form-label">📧 Correo electrónico</label>
+                            <label class="form-label required">📧 Correo electrónico</label>
                             <input type="email" class="form-input" id="correo" placeholder="tu@email.com" onchange="updateSummary()">
                         </div>
                     </div>
@@ -839,29 +876,29 @@
                 <div class="form-section">
                     <div class="form-row">
                         <div class="form-group">
-                            <label class="form-label">🌇 Ciudad</label>
+                            <label class="form-label required">🌇 Ciudad</label>
                             <input type="text" class="form-input" id="ciudad" placeholder="Ej: Medellín" onchange="updateSummary()">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">🏙️ Barrio</label>
+                            <label class="form-label optional">🏙️ Barrio</label>
                             <input type="text" class="form-input" id="barrio" placeholder="Ej: El Poblado" onchange="updateSummary()">
                         </div>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
-                            <label class="form-label">📪 Dirección</label>
+                            <label class="form-label required">📪 Dirección</label>
                             <input type="text" class="form-input" id="direccion" placeholder="Ej: Carrera 43A #5-15" onchange="updateSummary()">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">🏡 Apartamento/Casa</label>
+                            <label class="form-label optional">🏡 Apartamento/Casa</label>
                             <input type="text" class="form-input" id="apartamento" placeholder="Ej: Apto 501, Casa 12" onchange="updateSummary()">
                         </div>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
-                            <label class="form-label">🏢 Nombre de la unidad (si aplica)</label>
+                            <label class="form-label optional">🏢 Nombre de la unidad</label>
                             <input type="text" class="form-input" id="unidad" placeholder="Ej: Torre 2, Edificio Central, etc." onchange="updateSummary()">
                         </div>
                     </div>
@@ -891,6 +928,10 @@
                 <div class="summary-item">
                     <span class="summary-label">Temática:</span>
                     <span class="summary-value" id="summaryTematica">-</span>
+                </div>
+                <div class="summary-item" id="summaryFestejadoContainer" style="display: none;">
+                    <span class="summary-label">Festejado:</span>
+                    <span class="summary-value" id="summaryFestejado">-</span>
                 </div>
                 <div class="summary-item">
                     <span class="summary-label">Ubicación:</span>
@@ -1110,6 +1151,11 @@
                     dayElement.classList.add('other-month');
                 }
 
+                // Marcar el día actual
+                if (cellDate.getTime() === today.getTime()) {
+                    dayElement.classList.add('today');
+                }
+
                 // Deshabilitar fechas pasadas
                 if (cellDate < today) {
                     dayElement.classList.add('disabled');
@@ -1169,6 +1215,16 @@
             // Temática
             const tematica = document.getElementById('tematica').value;
             document.getElementById('summaryTematica').textContent = tematica || '-';
+            
+            // Festejado (mostrar solo si tiene valor)
+            const festejado = document.getElementById('festejado').value;
+            const festejadoContainer = document.getElementById('summaryFestejadoContainer');
+            if (festejado) {
+                document.getElementById('summaryFestejado').textContent = festejado;
+                festejadoContainer.style.display = 'flex';
+            } else {
+                festejadoContainer.style.display = 'none';
+            }
 
             // Ubicación
             const ciudad = document.getElementById('ciudad').value;
@@ -1191,11 +1247,8 @@
             const correo = document.getElementById('correo').value.trim();
             const ciudad = document.getElementById('ciudad').value.trim();
             const direccion = document.getElementById('direccion').value.trim();
-            const tematica = document.getElementById('tematica').value.trim();
-            const festejado = document.getElementById('festejado').value.trim();
 
-            return selectedDate && nombreCompleto && telefono && correo && 
-                   ciudad && direccion && tematica && festejado;
+            return selectedDate && nombreCompleto && telefono && correo && ciudad && direccion;
         }
 
         function updateWhatsAppButton() {
@@ -1280,8 +1333,9 @@
             mensaje += "*DETALLES DEL EVENTO:*\n";
             mensaje += `Fecha: ${fecha}\n`;
             mensaje += `Hora: ${horaInicio} - ${horaFin}\n`;
-            mensaje += `Tematica: ${tematica}\n`;
-            mensaje += `Festejado: ${festejado}\n\n`;
+            if (tematica) mensaje += `Tematica: ${tematica}\n`;
+            if (festejado) mensaje += `Festejado: ${festejado}\n`;
+            mensaje += "\n";
             
             mensaje += "*UBICACION:*\n";
             mensaje += `Ciudad: ${ciudad}\n`;
@@ -1332,7 +1386,8 @@
                 input.addEventListener('input', function() {
                     updateWhatsAppButton();
                     updateSummary();
-                    if (id === 'tematica' || id === 'festejado') {
+                    // Actualizar progreso al llenar información personal o dirección
+                    if (['nombreCompleto', 'telefono', 'correo', 'ciudad', 'direccion'].includes(id)) {
                         updateProgressBar(3);
                     }
                 });
