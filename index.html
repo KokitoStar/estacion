@@ -622,6 +622,35 @@
             .time-inputs {
                 grid-template-columns: 1fr;
             }
+            
+            .calendar-container {
+                padding: 15px;
+                margin: 0 -5px 30px -5px;
+            }
+            
+            .calendar-grid {
+                gap: 3px;
+            }
+            
+            .calendar-day {
+                font-size: 0.9em;
+                min-height: 35px;
+            }
+            
+            .calendar-day-header {
+                font-size: 0.8em;
+                padding: 8px 4px;
+            }
+            
+            .calendar-nav {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+            
+            .calendar-month {
+                font-size: 1.2em;
+            }
 
             .modal-content {
                 width: 95%;
@@ -630,6 +659,31 @@
 
             .modal-body {
                 padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .calendar-container {
+                padding: 10px;
+                margin: 0 -10px 30px -10px;
+            }
+            
+            .calendar-day {
+                font-size: 0.8em;
+                min-height: 32px;
+            }
+            
+            .calendar-day-header {
+                font-size: 0.75em;
+                padding: 6px 2px;
+            }
+            
+            .calendar-header {
+                margin-bottom: 15px;
+            }
+            
+            .calendar-month {
+                font-size: 1.1em;
             }
         }
     </style>
@@ -676,20 +730,20 @@
         </div>
 
         <div class="content">
-            <div class="info-section" style="padding: 20px; margin-bottom: 25px;">
-                <h3 style="font-size: 1.3em; margin-bottom: 12px;">🎪 ¿QUÉ INCLUYE TU ESTACIÓN?</h3>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
-                    <div class="info-item" style="padding: 10px; font-size: 0.95em;">
-                        ✨ Mínimo 30 tatuajes con glitter
+            <div class="info-section" style="padding: 15px; margin-bottom: 20px;">
+                <h3 style="font-size: 1.1em; margin-bottom: 10px;">🎪 ¿QUÉ INCLUYE TU ESTACIÓN?</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                    <div class="info-item" style="padding: 8px; font-size: 0.85em;">
+                        ✨ Mínimo 30 tatuajes
                     </div>
-                    <div class="info-item" style="padding: 10px; font-size: 0.95em;">
+                    <div class="info-item" style="padding: 8px; font-size: 0.85em;">
                         👩‍🎨 Profesional 3-5 horas
                     </div>
-                    <div class="info-item" style="padding: 10px; font-size: 0.95em;">
+                    <div class="info-item" style="padding: 8px; font-size: 0.85em;">
                         🎨 Módulo completo
                     </div>
-                    <div class="info-item" style="padding: 10px; font-size: 0.95em;">
-                        🚐 Transporte incluido dentro del Área metropolitana
+                    <div class="info-item" style="padding: 8px; font-size: 0.85em;">
+                        🚐 Transporte área metropolitana
                     </div>
                 </div>
             </div>
@@ -777,13 +831,6 @@
                             <input type="email" class="form-input" id="correo" placeholder="tu@email.com" onchange="updateSummary()">
                         </div>
                     </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">🏢 Nombre de la unidad (si aplica)</label>
-                            <input type="text" class="form-input" id="unidad" placeholder="Ej: Torre 2, Edificio Central, etc." onchange="updateSummary()">
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -793,22 +840,29 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label">🌇 Ciudad</label>
-                            <input type="text" class="form-input" id="ciudad" placeholder="Ej: Medellín" onchange="checkCoverage()">
+                            <input type="text" class="form-input" id="ciudad" placeholder="Ej: Medellín" onchange="updateSummary()">
                         </div>
                         <div class="form-group">
                             <label class="form-label">🏙️ Barrio</label>
-                            <input type="text" class="form-input" id="barrio" placeholder="Ej: El Poblado" onchange="checkCoverage()">
+                            <input type="text" class="form-input" id="barrio" placeholder="Ej: El Poblado" onchange="updateSummary()">
                         </div>
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label">📪 Dirección</label>
-                            <input type="text" class="form-input" id="direccion" placeholder="Ej: Carrera 43A #5-15" onchange="checkCoverage()">
+                            <input type="text" class="form-input" id="direccion" placeholder="Ej: Carrera 43A #5-15" onchange="updateSummary()">
                         </div>
                         <div class="form-group">
                             <label class="form-label">🏡 Apartamento/Casa</label>
-                            <input type="text" class="form-input" id="apartamento" placeholder="Ej: Apto 501, Casa 12" onchange="checkCoverage()">
+                            <input type="text" class="form-input" id="apartamento" placeholder="Ej: Apto 501, Casa 12" onchange="updateSummary()">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">🏢 Nombre de la unidad (si aplica)</label>
+                            <input type="text" class="form-input" id="unidad" placeholder="Ej: Torre 2, Edificio Central, etc." onchange="updateSummary()">
                         </div>
                     </div>
                     
@@ -876,10 +930,10 @@
                     <div class="faq-question">❓ ¿Qué incluye una estación de tatuajes Kokito?</div>
                     <div class="faq-answer">
                         Nuestra estación incluye:<br>
-                        ✨ <strong>30 tatuajes temporales con glitter premium</strong><br>
+                        ✨ <strong>Mínimo 30 tatuajes temporales con glitter premium</strong><br>
                         👩‍🎨 <strong>Una profesional capacitada aplicándolos durante el evento</strong><br>
                         🎨 <strong>Módulo completo con todos los materiales necesarios</strong><br>
-                        🚐 <strong>Transporte dentro del Área Metropolitana de Medellín</strong><br>
+                        🚐 <strong>Transporte incluido dentro del Área Metropolitana de Medellín</strong><br>
                         🎪 <strong>Setup y montaje en tu evento</strong>
                     </div>
                 </div>
@@ -926,7 +980,7 @@
                 <div class="faq-item">
                     <div class="faq-question">📍 ¿En qué lugares pueden ir?</div>
                     <div class="faq-answer">
-                        Cubrimos <strong>toda el Área Metropolitana de Medellín</strong> sin recargo adicional. Esto incluye: Medellín, Envigado, Itagüí, Sabaneta, La Estrella, y zonas cercanas.
+                        Cubrimos <strong>toda el Área Metropolitana de Medellín</strong> sin recargo adicional. Esto incluye: Medellín, Envigado, Itagüí, Sabaneta, La Estrella, y zonas cercanas. El transporte está incluido dentro de esta área.
                     </div>
                 </div>
 
@@ -1135,7 +1189,6 @@
             const nombreCompleto = document.getElementById('nombreCompleto').value.trim();
             const telefono = document.getElementById('telefono').value.trim();
             const correo = document.getElementById('correo').value.trim();
-            const unidad = document.getElementById('unidad').value.trim();
             const ciudad = document.getElementById('ciudad').value.trim();
             const direccion = document.getElementById('direccion').value.trim();
             const tematica = document.getElementById('tematica').value.trim();
@@ -1206,6 +1259,7 @@
             const nombreCompleto = document.getElementById('nombreCompleto').value.trim();
             const telefono = document.getElementById('telefono').value.trim();
             const correo = document.getElementById('correo').value.trim();
+            const unidad = document.getElementById('unidad').value.trim();
             const ciudad = document.getElementById('ciudad').value.trim();
             const barrio = document.getElementById('barrio').value.trim();
             const direccion = document.getElementById('direccion').value.trim();
@@ -1214,41 +1268,43 @@
             const festejado = document.getElementById('festejado').value.trim();
             const observaciones = document.getElementById('observaciones').value.trim();
 
-            let mensaje = `🎨 *RESERVA ESTACIÓN DE TATUAJES KOKITO STAR* 🎨\n\n`;
-            mensaje += `🎫 *NÚMERO DE RESERVA: ${reservationNumber}*\n\n`;
+            let mensaje = `*RESERVA ESTACION DE TATUAJES KOKITO STAR*\n\n`;
+            mensaje += `*NUMERO DE RESERVA:* ${reservationNumber}\n\n`;
             
-            mensaje += "👤 *INFORMACIÓN PERSONAL:*\n";
-            mensaje += `👤 *Nombre:* ${nombreCompleto}\n`;
-            mensaje += `☎️ *Teléfono:* ${telefono}\n`;
-            mensaje += `📧 *Correo:* ${correo}\n`;
-            if (unidad) mensaje += `🏢 *Unidad:* ${unidad}\n`;
+            mensaje += "*INFORMACION PERSONAL:*\n";
+            mensaje += `Nombre: ${nombreCompleto}\n`;
+            mensaje += `Telefono: ${telefono}\n`;
+            mensaje += `Correo: ${correo}\n`;
             mensaje += "\n";
             
-            mensaje += "🎉 *DETALLES DEL EVENTO:*\n";
-            mensaje += `📅 *Fecha:* ${fecha}\n`;
-            mensaje += `⏰ *Hora:* ${horaInicio} - ${horaFin}\n`;
-            mensaje += `🎭 *Temática:* ${tematica}\n`;
-            mensaje += `🎈 *Festejado:* ${festejado}\n\n`;
+            mensaje += "*DETALLES DEL EVENTO:*\n";
+            mensaje += `Fecha: ${fecha}\n`;
+            mensaje += `Hora: ${horaInicio} - ${horaFin}\n`;
+            mensaje += `Tematica: ${tematica}\n`;
+            mensaje += `Festejado: ${festejado}\n\n`;
             
-            mensaje += "📍 *UBICACIÓN:*\n";
-            mensaje += `🌇 *Ciudad:* ${ciudad}\n`;
-            if (barrio) mensaje += `🏙️ *Barrio:* ${barrio}\n`;
-            mensaje += `📪 *Dirección:* ${direccion}\n`;
-            if (apartamento) mensaje += `🏡 *Apto/Casa:* ${apartamento}\n\n`;
+            mensaje += "*UBICACION:*\n";
+            mensaje += `Ciudad: ${ciudad}\n`;
+            if (barrio) mensaje += `Barrio: ${barrio}\n`;
+            mensaje += `Direccion: ${direccion}\n`;
+            if (apartamento) mensaje += `Apto/Casa: ${apartamento}\n`;
+            if (unidad) mensaje += `Unidad: ${unidad}\n`;
+            mensaje += "\n";
             
-            mensaje += "✨ *SERVICIO SOLICITADO:*\n";
-            mensaje += `🎨 *Estación de tatuajes temporales*\n`;
-            mensaje += `📦 *Base:* 30 tatuajes incluidos\n`;
+            mensaje += "*SERVICIO SOLICITADO:*\n";
+            mensaje += `Estacion de tatuajes temporales\n`;
+            mensaje += `Base: Minimo 30 tatuajes incluidos\n`;
+            mensaje += `Transporte incluido dentro del area metropolitana\n`;
             mensaje += "\n";
             
             if (observaciones) {
-                mensaje += "📝 *OBSERVACIONES ESPECIALES:*\n";
+                mensaje += "*OBSERVACIONES ESPECIALES:*\n";
                 mensaje += `${observaciones}\n\n`;
             }
             
-            mensaje += "¡Gracias por confiar en Kokito Star! Un KokitoLíder te confirmará disponibilidad pronto. 🎨✨";
+            mensaje += "Gracias por confiar en Kokito Star! Un KokitoLider te confirmara disponibilidad pronto.";
             
-            const numeroWhatsApp = "573004081897";
+            const numeroWhatsApp = "573218526763";
             const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
             window.open(urlWhatsApp, '_blank');
             
@@ -1270,7 +1326,7 @@
             initializeApp();
             
             // Event listeners para validar formulario en tiempo real
-            const formInputs = ['nombreCompleto', 'telefono', 'correo', 'unidad', 'ciudad', 'direccion', 'tematica', 'festejado', 'horaInicio', 'horaFin'];
+            const formInputs = ['nombreCompleto', 'telefono', 'correo', 'unidad', 'ciudad', 'barrio', 'direccion', 'apartamento', 'tematica', 'festejado', 'observaciones', 'horaInicio', 'horaFin'];
             formInputs.forEach(id => {
                 const input = document.getElementById(id);
                 input.addEventListener('input', function() {
