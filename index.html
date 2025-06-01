@@ -329,19 +329,20 @@
             transform: scale(1.1);
         }
 
+        .calendar-day.other-month {
+            color: #666;
+        }
+
         .calendar-day.today {
-            background: rgba(229, 6, 149, 0.2);
+            background: rgba(229, 6, 149, 0.1);
             border: 2px solid #E50695;
             color: #E50695;
             font-weight: bold;
         }
 
         .calendar-day.today:hover {
-            background: rgba(229, 6, 149, 0.4);
-        }
-
-        .calendar-day.other-month {
-            color: #666;
+            background: rgba(229, 6, 149, 0.2);
+            border-color: #E50695;
         }
 
         .time-selector {
@@ -1151,12 +1152,12 @@
                     dayElement.classList.add('other-month');
                 }
 
-                // Marcar el día actual
+                // Marcar el día de hoy
                 if (cellDate.getTime() === today.getTime()) {
                     dayElement.classList.add('today');
                 }
 
-                // Deshabilitar fechas pasadas
+                // Deshabilitar fechas pasadas (excepto hoy)
                 if (cellDate < today) {
                     dayElement.classList.add('disabled');
                 } else {
@@ -1358,7 +1359,7 @@
             
             mensaje += "Gracias por confiar en Kokito Star! Un KokitoLider te confirmara disponibilidad pronto.";
             
-            const numeroWhatsApp = "573218526763";
+            const numeroWhatsApp = "573052661533";
             const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
             window.open(urlWhatsApp, '_blank');
             
